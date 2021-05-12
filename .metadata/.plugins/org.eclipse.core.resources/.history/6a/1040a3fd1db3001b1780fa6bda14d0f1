@@ -1,0 +1,29 @@
+/**
+ * 
+ */
+package com.salesianostriana.dam.cleoscatcafe.modelo;
+
+import java.time.LocalDate;
+import java.util.List;
+
+/**
+ * @author PC
+ *
+ */
+public class Reserva {
+	
+	private long id_reserva;
+	
+	private String nombre;
+	private String apellidos;
+	private String telefono;
+	private String email;
+	private LocalDate fecha;
+	private String tipo_reserva;
+	private List <Integer> lista_gatos;
+	private boolean comida_gatos;
+	private boolean juguetes_gatos;
+	private boolean bebida;
+	private boolean foto_mural;
+
+}
