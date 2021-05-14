@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="ImportExportAction">
+		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.ui.wizards.import.ExternalProject"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+	</section>
+	<section name="NewWizardAction">
+	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_WIDTH" value="600"/>
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_HEIGHT" value="675"/>
@@ -12,10 +20,11 @@
 			<item value="org.eclipse.ui.commands"/>
 		</list>
 		<list key="textEntries">
-			<item value="1"/>
+			<item value="2"/>
 		</list>
 		<list key="textArray">
-			<item value="eclips"/>
+			<item value="ecli"/>
+			<item value="ec"/>
 		</list>
 	</section>
 </section>

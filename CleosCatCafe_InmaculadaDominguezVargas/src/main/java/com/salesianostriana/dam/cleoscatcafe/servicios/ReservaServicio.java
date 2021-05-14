@@ -18,9 +18,7 @@ import com.salesianostriana.dam.cleoscatcafe.servicios.base.BaseService;
 
 public class ReservaServicio extends BaseService <Reserva, Long, ReservaRepository> {
 	
-	public ReservaServicio (ReservaRepository rr) {
-		super(rr);
-	}
+	
 
 }
 

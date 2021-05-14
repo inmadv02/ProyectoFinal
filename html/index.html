@@ -11,17 +11,24 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <script src="js/script.js" defer></script>
         <style>
 
         @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');          
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');   
+        @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
             body{
                 background-color: #EDE7DC;
             }
             .navbar, footer{
                 background-color: #8A523D;
+            }
+
+            .navbar{
+              flex-grow: 1;
             }
 
             li{
@@ -32,6 +39,11 @@
               background-color: #CF9A7C;
             }
 
+            .marron2{
+              background-color:#8A523D;
+
+            }
+
             .caja{
               background-image: url('img/paw2.png');
               background-size: cover;
@@ -40,14 +52,21 @@
             }
 
             .bienvenida p:first-child{
-              font-size: 19pt;
+              font-size: 12pt;
+              font-family:'Montserrat', sans-serif;
+              font-style: italic;
+            }
+
+            .bienvenida p:nth-child(3){
+              font-size: 25pt;
               text-align: left;
               font-weight: bold;
+              letter-spacing: 0.5px;
               font-family: 'Abril Fatface', cursive;
               color: #493424;
             }
 
-            .bienvenida p:nth-child(3){
+            .bienvenida p:nth-child(5){
               text-align: justify;
             }
 
@@ -55,24 +74,51 @@
               border: 3px solid rgb(0, 0, 0);
             }
 
-            input#buscar, #inputEmail4, #inputPassword4{
+            #inputName4, #inputLastName4, #inputEmail4, #inputTlf4, #inputTipo, #inputDate, #numero, #caducidad {
               width: 80%;
             }
-
             
+            #buscar{
+              width: 90%;
+              
+            }
 
+            #Gato, #Reservar{
+              display: none;
+            }
+
+            #Gato:target, #Reservar:target{
+              display: inherit;
+            }
+
+            #barra, #barra2{
+              height: 4px;
             
+            }
+
+            #enlace1:hover, #enlace2:hover{
+              color: #8A523D;
+            }
+
+            .galeria:hover{
+               transform: scale(1.2);
+               transition-duration: 0.9s;
+               transition-timing-function: ease;
+            }
+
+
+
         </style>
 	</head>
-	<body class="container-fluid p-0 ml-auto">
-        <div id="contenedor" class="col-12 col-xl-8 m-auto ml shadow">
+	<body class="container-fluid p-0">
+        <div id="contenedor" class="col-12 col-lg-8 m-auto ml shadow">
             <header>
                 <div class="p-0 col-12"><img src="img/header.png" class="img-fluid"></div>
             </header>
   
-
-            <nav class="navbar navbar-expand-xl navbar-dark p-3">
-                <div class="container-fluid justify-content-between m-0 col-12">
+            <!--Menú que no hace collapse, no sé por qué-->
+            <nav class="navbar navbar-expand-xl navbar-dark p-3 col-12">
+                <div class="container-fluid m-0 col-12 p-0">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -82,8 +128,8 @@
                             </div>
                         </a>
               
-                  <div class="collapse navbar-collapse col-xl-12 col-12" id="navbarColor01">
-                    <ul class="navbar-nav text-center mr-4">
+                  <div class="collapse navbar-collapse col-xl-7 col-12" id="navbarColor01">
+                    <ul class="navbar-nav text-center">
                       <li class="nav-item">
                         <a class="nav-link active" href="#">Inicio
                           <span class="visually-hidden">(current)</span>
@@ -100,15 +146,16 @@
                       </li>
                       
                     </ul>
+                  
                     
-                    <div class="col-xl-3 p-2">
-                      <form class="d-flex col-12">
+                    <div class="col-xl-4 p-2">
+                      <form class="d-flex">
                         <input class="form-control me-sm-2" type="text" id="buscar" placeholder="Search">
                         <button class="btn marron my-2 my-sm-0" type="submit">Search</button>
                       </form>
                     </div>
-                  </div>
                   
+                  </div>
            
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-filter-right" viewbox="0 0 16 16">
@@ -119,67 +166,106 @@
             </nav>
 
             <div class="contenido bg-light d-flex">
+
               <main>
 
                 <!--Parte de arriba con la bienvenida y las fotos -->
 
-                <div class="row">
-                  <section class="col-xl-6 col-12 mb-4">
-                    <article class="caja">
+                <div class="row col-12 justify-content-around m-0">
+                  <section class="col-xl-6 col-12 mb-4 p-0">
+                    <article class="caja p-3">
                       <div><br><br><br><br><br></div>
-                      <div><br><br><br></div>
+                      <div><br><br></div>
                       <div class="row p-4 bienvenida">
-                        <p class="text-uppercase">— Bienvenido a Cleo's Cat Café</p>
+                        <p class="text-uppercase text-dark">— ¿Te apatece un café?</p>
                         <br>
+                        <p>Ven a Cleo's Cat Café</p>
                         <p class="text-dark">Nuestra cafetería es el lugar perfecto para aquellos amantes de los felinos que buscan tomarse un café o leer un libro acompañados de nuestras mascotas</p>
-                        <button type="button" class="btn marron col-xl-4 col-5 m-2 text-uppercase">Saber más</button>
+                        <button type="button" class="btn marron col-xl-4 col-5 m-2 text-uppercase font-weight-bold">Saber más</button>
                       </div>
                     </article>
                   </section>
                   <aside class="row col-xl-6 col-12 pt-5">
-                      <div class="p-0 col-xl-5 mt-4 col-12 d-block mx-auto text-center">
-                        <img src="img/gato1.png" class="img-fluid col-xl-12 col-10 d-block mx-auto shadow">
-                        <img src="img/gato4.png" class="img-fluid col-xl-12 col-10 mt-4 shadow">
+                      <div class="p-0 col-xl-5 mt-4 col-12 mx-xl-3 text-center">
+                        <img src="img/gato1.png" class="img-fluid col-xl-12 col-10 shadow-lg rounded-1">
+                        <img src="img/gato4.png" class="img-fluid col-xl-12 col-10 mt-4 shadow-lg rounded-1">
                       </div>
-                      <div class="p-0 col-xl-5 col-11 mt-xl-5">
-                        <img src="img/gato2.png" class="img-fluid col-xl-12 col-10 mt-4 mt-xl-0 shadow">
-                        <img src="img/gato5.png" class="img-fluid col-xl-12 col-10 mt-4 shadow">
+                      <div class="p-0 col-xl-5 mt-xl-5 col-12 mx-xl-4 text-center">
+                        <img src="img/gato2.png" class="img-fluid col-xl-12 col-10 mt-4 mt-xl-0 shadow-lg rounded-1">
+                        <img src="img/gato5.png" class="img-fluid col-xl-12 col-10 mt-4 shadow-lg rounded-1">
                       </div>
                     </aside>
-                  <section class="row col-12 mt-5 p-0 justify-content-center">  
-                    <nav class="row col-12 flex-row justify-content-center p-0">
+
+                  <!--Controller página -->
+                  <section class="row col-12 mt-5 p-0 justify-content-center"> 
+
+                    <nav class="row justify-content-center p-0">
+
                       <h3 class="text-center text-dark mb-4">¿Qué es lo que te gustaría hacer?</h3>
-                      <div class="nav nav-tabs justify-content-center align-items-center col-11" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active border" id="nav-home-tab" data-toggle="tab" href="#Gato" role="tab" aria-controls="nav-home" aria-selected="true">
-                          <div>
-                            <img src="img/caticon.png" class="img-responsive col-9">
-                            <p class="text-center">Nuestros gatos</p>
+
+                      <div class="row justify-content-center align-items-center col-11">
+                        <a id = "enlace1" class="active col-xl-2 text-decoration-none text-center" href="#Gato">
+                          <div class="row justify-content-center align-items-center">
+                            <img src="img/caticon.png" class="img-responsive col-8">
+                            <p>Nuestros gatos</p>
+                            <div id ="barra" class="marron2 row col-xl-7 rounded-1 m-0">
+                            </div>
                         </div>
                         </a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#Reservar" role="tab" aria-controls="nav-profile" aria-selected="false">
-                          <div>
-                            <img src="img/reservaicon.png" class="img-responsive col-9">
-                            <p class="text-center">Reservar</p>
+                        <a id = "enlace2" class="col-xl-2 text-decoration-none text-center" href="#Reservar">
+                          <div class="row justify-content-center align-items-center">
+                            <img src="img/reservaicon.png" class="img-responsive col-8">
+                            <p>Reservar</p>
+                          <div id ="barra2" class="row col-xl-7 rounded-1 m-0">
                           </div>
+                        </div>
                         </a>
+                        <hr>
                       </div>
                     </nav>
                     
-                    <div class="tab-content col-11 p-3" id="nav-tabContent">
-                      <div class="tab-pane fade show active col-11 p-0 justify-content-center" id="Gato" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <p>Lorem Ipsum</p>
+                    <article class="row col-11 p-3">
+                      <div class="active col-11 p-0 flex-row flex-wrap flex-grow-1" id="Gato">
+                        <div class="col-11 col-lg-4 p-2 text-center galeria">
+                          <img src="img/cat1.jpg" class="img-responsive col-lg-10 shadow">
+                        </div>
+                        <div class="col-11 col-lg-4 p-2 text-center galeria">
+                          <img src="img/cat2.jpg" class="img-responsive col-lg-10 shadow">
+                        </div>
+                        <div class="col-11 col-lg-4 p-2 text-center galeria">
+                          <img src="img/cat3.jpg" class="img-responsive col-lg-10 shadow">
+                        </div>
+                        <div class="col-11 col-lg-4 p-2 text-center galeria">
+                          <img src="img/cat4.jpg" class="img-responsive col-lg-10 shadow">
+                        </div>
+                        <div class="col-11 col-lg-4 p-2 text-center galeria">
+                          <img src="img/cat5.jpg" class="img-responsive col-lg-10 shadow">
+                        </div>
+                        <div class="col-11 col-lg-4 p-2 text-center galeria">
+                          <img src="img/cat6.jpg" class="img-responsive col-lg-10 shadow">
+                        </div>
+                        <div class="col-11 col-lg-4 p-2 text-center galeria">
+                          <img src="img/cat7.jpg" class="img-responsive col-lg-10 shadow">
+                        </div>
+                        <div class="col-11 col-lg-4 p-2 text-center galeria">
+                          <img src="img/cat8.jpg" class="img-responsive col-lg-10 shadow">
+                        </div>
+                        <div class="col-11 col-lg-4 p-2 text-center galeria">
+                          <img src="img/cat9.jpg" class="img-responsive col-lg-10 shadow">
+                        </div>
                       </div>
-                      <div class="tab-pane fade col-12 p-0 justify-content-center" id="Reservar" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                      <div class="col-12 p-0 justify-content-center" id="Reservar">
                         
                         <!--Tipos de reserva-->
-                          <div class="row justify-content-around">
+                          <div class="row justify-content-around col-12 p-0 m-0">
                             <div class="d-flex flex-wrap col-12 col-xl-3 p-0 mt-4 mr-0 d-flex">
-                              <h4 class="col-12 pl-0">Tipos de reserva</h4>
+                              <h4 class="col-12 pl-0">Tipo de reserva</h4>
                                 <div id="accordion" class="col-12 pl-0">
-                                    <div class="card col-12 p-0">
-                                        <div class="card-header bg-dark">
-                                            <a class="card-link text-white" data-toggle="collapse" href="#collapseOne">
-                                            Básico
+                                    <div class="card col-12 p-0 rounded-top">
+                                        <div class="card-header marron">
+                                            <a class="card-link text-dark text-decoration-nones" data-toggle="collapse" href="#collapseOne">
+                                            Media hora
                                             </a>
                                         </div>
                                         <div id="collapseOne" class="collapse show" data-parent="#accordion">
@@ -221,8 +307,8 @@
                                     </div>
                                     <div class="card">
                                         <div class="card-header">
-                                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-                                            Estándar
+                                            <a class="collapsed card-link text-decoration-none" data-toggle="collapse" href="#collapseTwo">
+                                            Una hora
                                             </a>
                                         </div>
                                     <div id="collapseTwo" class="collapse" data-parent="#accordion">
@@ -262,10 +348,10 @@
                                         </div>
                                      </div>
                                     </div>
-                                    <div class="card">
-                                        <div class="card-header bg-dark">
-                                            <a class="collapsed card-link text-white" data-toggle="collapse" href="#collapseThree">
-                                            Premium
+                                    <div class="card rounded-bottom">
+                                        <div class="card-header marron">
+                                            <a class="collapsed card-link text-dark text-decoration-none" data-toggle="collapse" href="#collapseThree">
+                                            Hora y media
                                             </a>
                                         </div>
                                         <div id="collapseThree" class="collapse" data-parent="#accordion">
@@ -314,53 +400,87 @@
                           <form class="col-lg-7 col-12 mt-4">
                             <h4 class="col-12 pl-0">Haz tu reserva</h4>
                             <div class="form-row d-flex flex-row mt-3">
+
+                              <!-- Nombre y apellidos -->
+
+                              <div class="form-group col-md-6">
+                                <label for="inputName4">Nombre</label>
+                                <input type="text" class="form-control" id="inputName4" placeholder="Nombre">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputLastName4">Apellidos</label>
+                                <input type="text" class="form-control" id="inputLastName4" placeholder="Apellidos">
+                              </div>
+                            </div>
+
+                            <!--Email y telefono móvil -->
+                            <div class="form-row d-flex flex-row mt-3">
                               <div class="form-group col-md-6">
                                 <label for="inputEmail4">Email</label>
                                 <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
                               </div>
-                              <div class="form-group col-md-6 mt-2">
-                                <label for="inputPassword4">Password</label>
-                                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputAddress">Address</label>
-                              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                            </div>
-                            <div class="form-group">
-                              <label for="inputAddress2">Address 2</label>
-                              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                            </div>
-                            <div class="form-row">
                               <div class="form-group col-md-6">
-                                <label for="inputCity">City</label>
-                                <input type="text" class="form-control" id="inputCity">
+                                <label for="inputTlf4">Teléfono</label>
+                                <input type="text" class="form-control" id="inputTlf4" placeholder="Teléfono">
                               </div>
-                              <div class="form-group col-md-4">
-                                <label for="inputState">State</label>
-                                <select id="inputState" class="form-control">
-                                  <option selected>Choose...</option>
-                                  <option>...</option>
+                            </div>
+
+                             <div class="form-row d-flex flex-row mt-3">
+                              <div class="form-group col-md-6">
+                                <label for="inputDate">Fecha</label>
+                                <input type="date" class="form-control" id="inputDate" placeholder="dd-mm-yyyy">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputTipo">Tipo de reserva</label>
+                                <select id="inputTipo" class="form-control">
+                                  <option selected>Media hora</option>
+                                  <option>Una hora</option>
+                                  <option>Hora y media</option>
                                 </select>
                               </div>
-                              <div class="form-group col-md-2">
-                                <label for="inputZip">Zip</label>
-                                <input type="text" class="form-control" id="inputZip">
-                              </div>
                             </div>
-                            <div class="form-group">
+
+                            <fieldset class="form-group mt-3">
+                              <p>¿Quiéres jugar con algún gato en especial?</p>
                               <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
-                                  Check me out
+                                <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                  No
                                 </label>
                               </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Sign in</button>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                                  Sí
+                                </label>
+                              </div>
+                              <!--Aquí va algo relacionado con Javascript-->
+                            </fieldset>
+                            <fieldset class="mt-3">
+                              <div class="form-group col-md-4">
+                                <label for="inputPago" class="pb-1">Método de pago</label>
+                                <select id="inputPago" class="form-control">
+                                  <option>Código de regalo</option>
+                                    <option>Tarjeta de crédito o débito</option>
+                                    <option>Cuenta de ahorros/corriente</option>
+                                </select>
+                              </div>
+                            </fieldset>
+                            <fieldset class="form-row d-flex flex-row mt-3">
+                              <div class="form-group col-lg-5">
+                                  <label for="numero" class="col-form-label">Numero de tarjeta</label>
+                                  <input type="text" class="form-control" id="numero" maxlength="16" required>
+                              </div>
+                              <div class="form-group col-lg-5">
+                                <label for="caducidad" class="col-form-label">Fecha de caducidad</label>
+                                 <input type="month" class="form-control" min="2021-05-22" max="2023-03-21" id="caducidad" required>
+                              </div>
+                          </fieldset>
+                            <button type="submit" class="btn btn-primary mt-4">Reservar</button>
                           </form>
                         </div>
                       </div>
-                    </div>          
+                    </article>          
                 
                   </section>  
                 </div>
@@ -457,7 +577,7 @@
                 <!--Copyright-->
                 <p class="text-center text-md-left">© 2020 Copyright:
                   <a href="https://mdbootstrap.com/">
-                    <strong> MDBootstrap.com</strong>
+                    <strong> Cleo's Cat Cafe</strong>
                   </a>
                 </p>
 

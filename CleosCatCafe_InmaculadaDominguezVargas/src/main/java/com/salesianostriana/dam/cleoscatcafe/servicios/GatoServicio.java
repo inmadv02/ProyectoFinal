@@ -18,7 +18,4 @@ import com.salesianostriana.dam.cleoscatcafe.servicios.base.BaseService;
 public class GatoServicio extends BaseService <Gato, Long, GatoRepository> {
 	
 	
-	public GatoServicio (GatoRepository gr) {
-		super(gr);
-	}
 }

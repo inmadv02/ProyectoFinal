@@ -1,6 +1,0 @@
-adoptar el gato
-añadir gatos
-eliminar gatos
-editar gatos
-vender café
-vender pasteles

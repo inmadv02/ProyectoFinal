@@ -4,7 +4,7 @@
 package com.salesianostriana.dam.cleoscatcafe.modelo;
 
 import java.time.LocalDate;
-import java.util.List;
+
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -33,10 +33,14 @@ public class Reserva {
 	private String email;
 	private LocalDate fecha;
 	private String tipo_reserva;
-	private List <Integer> lista_gatos;
+	private Gato gato;
+	private String metodo_pago;
 	private boolean comida_gatos;
 	private boolean juguetes_gatos;
 	private boolean bebida;
 	private boolean foto_mural;
+	private double precio_persona;
+	private int tiempo;
+	private double precio_final;
 
 }
