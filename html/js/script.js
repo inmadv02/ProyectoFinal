@@ -22,3 +22,18 @@ function mostrarBarra2 (){
 }
 
 
+let fotos = document.getElementById('galeria');
+let info = document.getElementById('informacion');
+
+fotos.addEventListener('click', mostrarCuadro);
+
+function mostrarCuadro (event){
+    let div = event.target;
+    if(div.tagName = 'div'){
+        info.classList.remove('d-none');
+        info.classList.add('d-block');
+    }
+   
+
+}
+

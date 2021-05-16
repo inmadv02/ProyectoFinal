@@ -26,8 +26,9 @@ public class Gato {
 	@GeneratedValue
 	private long id;
 	
+	private String foto;
 	private String nombre;
-	private String raza;
+	private String sexo;
 	private int edad;
 	private String color;
 	private LocalDate fecha_entrada;
