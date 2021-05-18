@@ -13,5 +13,7 @@ import com.salesianostriana.dam.cleoscatcafe.modelo.Gato;
  *
  */
 public interface GatoRepository extends JpaRepository <Gato, Long>{
+	
+	
 
 }

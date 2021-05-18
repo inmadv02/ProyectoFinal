@@ -37,3 +37,7 @@ function mostrarCuadro (event){
 
 }
 
+function validarFormulario (){
+    let vacio = "";
+    
+}

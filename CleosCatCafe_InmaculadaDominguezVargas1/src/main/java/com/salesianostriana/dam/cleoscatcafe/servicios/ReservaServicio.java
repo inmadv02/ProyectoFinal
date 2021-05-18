@@ -17,6 +17,11 @@ import com.salesianostriana.dam.cleoscatcafe.servicios.base.BaseService;
 @Service
 
 public class ReservaServicio extends BaseService <Reserva, Long, ReservaRepository> {
+
+	public ReservaServicio(ReservaRepository repo) {
+		super(repo);
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 
