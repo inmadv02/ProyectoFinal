@@ -48,7 +48,7 @@ public class GatoController {
 		
 		gs.save(gato);
 		
-		return "redirect:/index";
+		return "redirect:/gato/lista";
 	}
 	
 	@GetMapping("/lista/{id}")
@@ -56,7 +56,7 @@ public class GatoController {
 		
 		model.addAttribute("gato", gs.findById(id));
 		
-		return "redirect:/lista";
+		return "redirect:/gato/lista";
 	}
 	
 	@GetMapping("/admin/editar/{id}")

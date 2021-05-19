@@ -24,9 +24,7 @@ public class InitData {
 	@PostConstruct
 	public void init () {
 		
-		List <Gato> gatos = List.of(new Gato(10, "sdgbfgn", "xdgbngfn", "hembra", 1, "xdgb fgn", LocalDate.now(), "xdfng fhn"));
 		
-		gatos.forEach(gs::save);
 	}
 	
 

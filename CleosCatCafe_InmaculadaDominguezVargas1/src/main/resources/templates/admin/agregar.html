@@ -109,7 +109,7 @@
             <div class="contenido bg-light d-flex">
                 <main class="p-4 col-12">
                 <form method="post" action="#" th:action="@{/gato/admin/nuevo-gato/submit}" th:object="${gato}" class="col-12 p-2 flex-row flex-wrap">
-                    <h3>Nuevo gato<span th:text="${gato.id}"></span></h3>
+                    <h3>Nuevo gato<span th:text="${gato.id}" class="invisible"></span></h3>
                     <p>Introduce los datos necesarios para poder darlo de alta en nuestra cafetería</p>
                         <div class="col-xl-4 flex-column mb-3">
                             <div class="border-3 col-12 bg-light">
@@ -145,6 +145,7 @@
                                   <label for="edad">Edad</label>
                                   <input type="number" name="edad" id="edad" class="form-control" min="1" max="20" th:field="*{edad}" required>
                                 </div>
+                                 <input type="hidden" class="visually-hidden" th:field="*{fecha_entrada}" th:text="${#temporals.createToday()}">
                               </div>
                             </div>
                             <div class="col-xl-6 col-12 mt-3">
