@@ -12,7 +12,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-   
+   		 <script th:src="@{/js/scriptFormularioGato.js}" src="../../static/js/script.js" defer></script>
         <style>
 
         @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
@@ -35,6 +35,14 @@
             li{
               width:140px;
             }
+            
+            input {
+              width: 80%;
+            }
+
+            select {
+              width: 100%;
+            }
 
             form:nth-child(3){
                 flex-grow: 1;
@@ -48,6 +56,13 @@
               background-color:#8A523D;
 
             }
+            @media screen and (max-width: 500px){
+
+              #buscar{
+                display: none;
+              }
+
+            }
         </style>
 	</head>
 	<body class="container-fluid p-0">
@@ -59,7 +74,7 @@
             <!--Menú que no hace collapse, no sé por qué-->
             <nav class="navbar navbar-expand-lg navbar-dark p-3 col-12">
                 <div class="container-fluid m-0 col-12 p-0">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <a class="navbar-brand col-xl-1 col-2 d-flex justify-content-center justify-content-lg-start m-0 p-0" href="#">
@@ -69,14 +84,14 @@
                         </a>
               
                   <div class="collapse navbar-collapse col-xl-7 col-12" id="navbarColor01">
-                    <ul class="navbar-nav me-auto text-center">
+                    <ul class="navbar-nav me-auto text-center align-items-center">
                       <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Inicio
+                        <a class="nav-link active" href="../index.html" th:href="@{/main/lista}">Inicio
                           <span class="visually-hidden">(current)</span>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="Gato">Nuestros gatos</a>
+                        <a class="nav-link" href="#Gato">Nuestros gatos</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#Reservar">Reservar</a>
@@ -91,25 +106,21 @@
                     <div class="col-xl-4 p-2">
                       <form class="d-flex">
                         <input class="form-control me-sm-2" type="text" id="buscar" placeholder="Search">
-                        <button class="btn marron my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn marron my-2 my-sm-2" type="submit">Search</button>
                       </form>
                     </div>
                   
                   </div>
            
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-filter-right" viewbox="0 0 16 16">
-                    <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5z"/>
-                  </svg>
-              </button>
+                
               </div>
             </nav>
             
 
             <div class="contenido bg-light d-flex">
                 <main class="p-4 col-12">
-                <form method="post" action="#" th:action="@{/gato/admin/nuevo-gato/submit}" th:object="${gato}" class="col-12 p-2 flex-row flex-wrap">
-                    <h3>Nuevo gato<span th:text="${gato.id}" class="invisible"></span></h3>
+                <form id="formulario" method="post" action="#" th:action="@{/gato/admin/nuevo-gato/submit}" th:object="${gato}" class="col-12 p-2 flex-row flex-wrap">
+                    <h3><span th:text="${gato.id} ? 'Editar' : 'Nuevo'"></span> gato</h3>
                     <p>Introduce los datos necesarios para poder darlo de alta en nuestra cafetería</p>
                         <div class="col-xl-4 flex-column mb-3">
                             <div class="border-3 col-12 bg-light">
@@ -117,7 +128,7 @@
                             </div>
                             <div class="col-8">
 								<label for="imagen">URL de la imagen</label> <input type="url"
-									class="form-control" id="foto" placeholder="http://..."
+									class="form-control" id="foto" name="foto" placeholder="http://..."
 									th:field="*{foto}">
 							</div>
                         </div>
@@ -126,31 +137,38 @@
                               <div class="row col-12 d-flex">
                               <input type="hidden" th:field="*{id}" id="id"/>
                                   <div class="form-group col-10 col-xl-6">
-                                      <label for="validation01">Nombre</label>
-                                      <input type="text" class="form-control" id="validation01" 
-                                          placeholder="Coco" th:field="*{nombre}" required>
+                                      <label for="nombre">Nombre</label>
+                                      <input type="text" class="form-control" id="nombre" name="nombre" 
+                                          placeholder="Coco" th:field="*{nombre}">
+                                      
                                   </div>
                                   <div class="form-group col-10 col-xl-6">
-                                      <label for="validation02">Sexo</label>
-                                      <input type="text" class="form-control" id="validation02" th:field="*{sexo}"placeholder="Hembra" required>
+                                      <label for="sexo" class="col-12">Sexo</label>
+                                      <select th:field="*{sexo}" name="sexo">
+                                        <option th:value="'Macho'" th:text="Macho"></option>
+                                        <option th:value="'Hembra'" th:text="Hembra"></option>
+                                    </select>
+                                    
                                   </div>
                               </div>
                               
                               <div class="row col-12 mt-2">
                                 <div class="form-group col-10 col-xl-6">
                                     <label for="color">Color</label>
-                                    <input type="text" id="color" class="form-control" th:field="*{color}" required>
+                                    <input type="text" id="color" class="form-control" name="color" th:field="*{color}">
                                 </div>
                                 <div class="form-group col-10 col-xl-6">
                                   <label for="edad">Edad</label>
-                                  <input type="number" name="edad" id="edad" class="form-control" min="1" max="20" th:field="*{edad}" required>
+                                  <input type="number" name="edad" id="edad" class="form-control" min="1" max="20" th:field="*{edad}">
                                 </div>
-                                 <input type="hidden" class="visually-hidden" th:field="*{fecha_entrada}" th:text="${#temporals.createToday()}">
+                                
+                                 <input type="hidden" th:field="*{fecha_entrada}" readonly>
                               </div>
                             </div>
                             <div class="col-xl-6 col-12 mt-3">
                                 <label for="observaciones">Información sobre el gato</label>
-                                <textarea name="observaciones" cols="60" rows="5" class="col-12" th:field="*{informacion}" required></textarea>
+                                <textarea name="observaciones" cols="60" rows="5" class="col-12" th:field="*{informacion}"></textarea>
+                                
                             </div>
                             <button type="submit" class="btn btn-primary col-xl-2 col-4 m-3">Agregar</button>
                         

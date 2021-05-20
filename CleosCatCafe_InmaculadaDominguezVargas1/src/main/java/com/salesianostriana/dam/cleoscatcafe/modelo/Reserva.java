@@ -35,7 +35,8 @@ public class Reserva {
 	private String telefono;
 	private String email;
 	private LocalDate fecha;
-	private String tipo_reserva;
+	private int num_personas;
+	private Tipo tipo_reserva;
 	
 	@ManyToOne
 	private Gato gato;
@@ -46,7 +47,8 @@ public class Reserva {
 	private boolean bebida;
 	private boolean foto_mural;
 	private double precio_persona;
-	private int tiempo;
+	private String tiempo;
 	private double precio_final;
+	
 
 }
