@@ -17,6 +17,11 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/main")
 public class MainController {
 	
+	
+	
+	private final GatoServicio gs;
+	private final ReservaServicio rs;
+
 	@GetMapping("/lista")
 	public String index(Model model) {
 		model.addAttribute("reservas", rs.findAll());
@@ -24,15 +29,14 @@ public class MainController {
 		return "index";
 	}
 	
-	private final GatoServicio gs;
-	private final ReservaServicio rs;
-	
-//	public String mostrarPagina(Model model) {
-//		
-//		model.addAttribute("gatos", gs.findAll());
-//		model.addAttribute("reservas", rs.findAll());
-//	}
-	
+	@GetMapping("/lista/nombreGato/{id}")
+	public String todosLosGato(Model model, 
+			@PathVariable("id") Long id) {
+		
+		model.addAttribute("alumnos", gs.ordenadosPorNombre(id));			
+
+		return "main/lista";
+	}
 	
 
 }

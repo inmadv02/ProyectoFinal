@@ -166,15 +166,15 @@
                   <div class="collapse navbar-collapse col-xl-7 col-12" id="navbarColor01">
                     <ul class="navbar-nav me-auto text-center">
                       <li class="nav-item">
-                        <a class="nav-link active" href="index.html" th:href="@{/gato/lista/}">Inicio
+                        <a class="nav-link active" href="index.html" th:href="@{/main/lista/}">Inicio
                           <span class="visually-hidden">(current)</span>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" th:href="@{/gato/lista/#Gato}">Nuestros gatos</a>
+                        <a class="nav-link" th:href="@{/main/lista#Gato}">Nuestros gatos</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" t:href="@{#Reserva}">Reservar</a>
+                        <a class="nav-link" t:href="@{/main/lista#Reserva}">Reservar</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Sobre nosotros</a>
@@ -231,7 +231,7 @@
 
                           <div id="informacion" class="media col-11 col-xl-9 marron mb-4 p-3 shadow text-light border p-3">
                        
-                            <div class="media-body flex-row flex-wrap row" th:href="@{/gato/lista/{id}(id=${id})}">
+                            <div class="media-body flex-row flex-wrap row" th:href="@{/gato/gato/{id}(id=${id})}">
                               <div class="col-12 botones d-flex justify-content-end">
 	                              <a th:href="@{/gato/admin/editar/{id}(id=${gato.id})}">
 	                                <button type="button" class="btn btn-primary editar m-2">
@@ -271,15 +271,7 @@
 
                           <!--Fotos de los gatos del café -->
                           
-                          <div class="row">
-                          
-                            <div class="col-11 col-lg-4 p-2 text-center fotos" th:each="gato : ${gatos}" th:data-id="${gato.id}">
-                            	<img src="http://placehold.it/500x375"
-								th:src="${#strings.isEmpty(gato.foto)} ? 'http://placehold.it/500x375' : ${gato.foto}" class="img-fluid col-lg-10 shadow"></a>
-                              <p class="pt-2" th:text="${gato.nombre}"></p>
-                            </div>
-                            
-                          </div>
+                       
                         </div>
                         <!--Termina la galería de fotos-->
                   

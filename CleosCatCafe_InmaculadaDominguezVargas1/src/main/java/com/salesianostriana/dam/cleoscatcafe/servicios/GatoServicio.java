@@ -3,6 +3,7 @@
  */
 package com.salesianostriana.dam.cleoscatcafe.servicios;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -25,19 +26,23 @@ public class GatoServicio extends BaseService <Gato, Long, GatoRepository> {
 		// TODO Auto-generated constructor stub
 	}
 	
-//	@Transactional
-//	public long countReservaByAfterDiaDeHoy (long id) {
-//		return repositorio
-//				.findAll()
-//				.stream()
-//				.map(p -> p.getReservas().get((int)id).getFecha().isAfter(LocalDate.now()))
-//				.count();
-//	}
-//	
+	
+	public long reservasDespuesHoy () {
+		LocalDate fecha = LocalDate.now();
+		return repositorio.countFechaReservaAfter(fecha);
+	}
+	
 
 	public List<Gato> ordenadosPorNombre (Long id){
 		return this.repositorio.findByIdOrderByNombreAsc(id);
 	}
 	
+//	public List<Gato> ordenadosPorEdad (Long id){
+//		return this.repositorio.findByIdOrderByEdad(id);
+//	}
+	
+	public List<Gato> contienenColor (String color){
+		return this.repositorio.findByColorIgnoreCase(color);
+	}
 	
 }

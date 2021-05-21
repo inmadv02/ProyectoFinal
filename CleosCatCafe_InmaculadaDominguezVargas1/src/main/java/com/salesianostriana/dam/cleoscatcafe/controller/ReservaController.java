@@ -47,35 +47,32 @@ public class ReservaController {
 	}
 	
 	@GetMapping("/nueva-reserva/precio")
-	public double calcularPrecioFinal(@ModelAttribute("reserva") Reserva reserva, Model model) {
+	public String calcularPrecioFinal(@ModelAttribute("reserva") Reserva reserva, Model model) {
 		double media = 3.5, hora = 4.5, horaYMedia = 5.5;
 		
 		
 		if(reserva.getTipo_reserva().name() == "Media hora") {
 			reserva.setPrecio_persona(media);
-			reserva.setTiempo("Media hora");
-			reserva.setBebida(false);
-			reserva.setJuguetes_gatos(false);
-			reserva.setFoto_mural(false);
-			
 			reserva.setPrecio_final(media*reserva.getNum_personas());
-			return reserva.getPrecio_final();
+			reserva.getPrecio_final();
+			
 		}
 		
 		if(reserva.getTipo_reserva().name() == "Una hora") {
 			reserva.setPrecio_persona(hora);
-			reserva.setTiempo("Una hora");
-			reserva.setFoto_mural(false);
+			
 			
 			reserva.setPrecio_final(hora*reserva.getNum_personas());
-			return reserva.getPrecio_final();
+			reserva.getPrecio_final();
 		}
 		
 		else {
 			reserva.setPrecio_persona(horaYMedia);
 			
 			reserva.setPrecio_final(horaYMedia*reserva.getNum_personas());
-			return reserva.getPrecio_final();
+			reserva.getPrecio_final();
 		}
+		
+		return "redirect:/reserva/nueva-reserva";
 	}
 }

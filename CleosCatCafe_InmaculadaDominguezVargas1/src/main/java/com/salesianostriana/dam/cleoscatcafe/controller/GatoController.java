@@ -4,6 +4,8 @@
 package com.salesianostriana.dam.cleoscatcafe.controller;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.salesianostriana.dam.cleoscatcafe.modelo.Gato;
-import com.salesianostriana.dam.cleoscatcafe.modelo.Reserva;
 import com.salesianostriana.dam.cleoscatcafe.servicios.GatoServicio;
-import com.salesianostriana.dam.cleoscatcafe.servicios.ReservaServicio;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,7 +32,22 @@ public class GatoController {
 	
 	
 	private final GatoServicio gs;
-	private final GatoServicio rs;
+
+	
+	@GetMapping("/")
+	public String gatosContienenColor(Model model, 
+			@RequestParam("q") Optional<String> consulta) {
+		
+		List<Gato> listadoGatos;
+		
+	
+		listadoGatos = gs.contienenColor(consulta.get());
+			
+
+		model.addAttribute("gatos", listadoGatos);					
+
+		return "index";
+	}
 	
 	
 	@GetMapping("/admin/nuevo-gato")
@@ -101,13 +117,13 @@ public class GatoController {
 
 	}
 	
-	@GetMapping("/main/lista/nombreGato/{id}")
-	public String todosLosGato(Model model, 
+	@GetMapping("/nombreGato/{id}")
+	public String todosLosGatos(Model model, 
 			@PathVariable("id") Long id) {
 		
 		model.addAttribute("alumnos", gs.ordenadosPorNombre(id));			
 
-		return "main/lista";
+		return "redirect:/main/lista";
 	}
 	
 	
