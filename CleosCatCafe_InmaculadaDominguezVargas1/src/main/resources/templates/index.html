@@ -144,12 +144,12 @@
 		}
 		
 		.filtro {
-			width: 20%;
+			width: 90%;
 			height: 40px;
 		}
 		
 		@media screen and (max-width: 500px) {
-			#buscar {
+			#buscar, .boton {
 				display: none;
 			}
 		}
@@ -188,9 +188,9 @@
 							th:href="@{/main/lista/}">Inicio <span
 								class="visually-hidden">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" th:href="#Gato">Nuestros
+						<li class="nav-item"><a class="nav-link" href="#Gato">Nuestros
 								gatos</a></li>
-						<li class="nav-item"><a class="nav-link" th:href="#Reserva">Reservar</a>
+						<li class="nav-item"><a class="nav-link" href="#Reserva">Reservar</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#">Sobre
 								nosotros</a></li>
@@ -208,15 +208,7 @@
 
 				</div>
 
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarColor01" aria-controls="navbarColor01"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-						fill="currentColor" class="bi bi-filter-right" viewbox="0 0 16 16">
-                    <path
-							d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5z" />
-                  </svg>
-				</button>
+				
 			</div>
 		</nav>
 
@@ -317,23 +309,11 @@
 										<div class="col-xl-2 col-12 mb-4 mb-lg-0">
 											<a href="admin/form-gato.html"
 												th:href="@{/gato/admin/nuevo-gato/}" target="_self">
-												<button
-													type="button" class="btn btn-primary">Añadir</button>
-													</a>
+												<button type="button" class="btn btn-primary">Añadir</button>
+											</a>
 										</div>
-										<div class="col-xl-3 col-12 mb-4 mb-lg-0">
-											<a th:href="@{/gato/nombreGato/{id}(id=${id})}" target="_self">
-												<button
-													type="button" class="btn btn-primary">Ordenar alfabéticamente</button>
-													</a>
-										</div>
-										<div class="col-xl-3 col-12 mb-4 mb-lg-0">
-											<a th:href="@{/gato/nombreGato/{id}(id=${id})}" target="_self">
-												<button
-													type="button" class="btn btn-primary">Ordenar por edad</button>
-													</a>
-										</div>
-										<form class="d-flex col-12 mt-3 justify-content-center">
+										
+										<form class="d-flex col-xl-4 col-12 justify-content-center">
 											<input class="form-control me-sm-2 filtro" type="text" 
 											name="q" th:value="${param.q}" onchange="window.location.href='http://localhost:9000/gato/?q=' + this.value" placeholder="Buscar"/>
 											<button class="btn marron my-sm-0 mx-2" type="submit">Buscar</button>
@@ -342,16 +322,15 @@
 
 									<!--Fotos de los gatos del café -->
 
-									<div th:each="gato : ${gatos}"
-										class="row col-11 col-lg-4 p-2 text-center fotos">
-										<a href="#" th:href="@{/gato/gato/{id}(id=${gato.id})}" class="text-decoration-none" th:field="*{id}" id="id">
-											<div class="col-12">
-												<img src="http://placehold.it/500x375"
-													th:src="${#strings.isEmpty(gato.foto)} ? 'http://placehold.it/500x375' : ${gato.foto}"
-													class="img-fluid col-lg-10 shadow">
-												<p class="pt-2" th:text="${gato.nombre}"></p>
-											</div>
-										</a>
+									<div th:each="gato : ${gatos}" class="row col-11 col-lg-4 p-2 text-center fotos">
+											<a href="#" th:href="@{/gato/gato/{id}(id=${gato.id})}" class="text-decoration-none" th:field="*{id}" id="id">
+												<div class="col-12">
+													<img src="http://placehold.it/500x375"
+														th:src="${#strings.isEmpty(gato.foto)} ? 'http://placehold.it/500x375' : ${gato.foto}"
+														class="img-fluid col-lg-10 shadow">
+													<p class="pt-2" th:text="${gato.nombre}"></p>
+												</div>
+											</a>
 									</div>
 								</div>
 
@@ -361,58 +340,50 @@
 
 							<!-- Empieza el Controller Reserva -->
 
-							<div class="col-12 p-3 mb-3 justify-content-center flex-wrap flex-row" id="Reservar"
+							<div class="col-12 mb-3 justify-content-center container-fluid flex-wrap flex-row" id="Reservar"
 								th:href="@{/main/lista/}">
-
+							
 								<div class="col-xl-2 col-12 mb-4">
 									<a href="admin/form-reserva.html"
 										th:href="@{/reserva/nueva-reserva/}" target="_self"><button
 											type="button" class="btn btn-primary">Añadir</button></a>
 								</div>
-
-								<table class="table shadow col-11">
-									<thead class="marron text-light text-center">
-									<tr>
-										<th>Nombre</th>
-										<th>Apellidos</th>
-										<th>Telefono</th>
-										<th>Email</th>
-										<th>Fecha reserva</th>
-										<th>Precio persona</th>
-										<th>Tipo reserva</th>
-										
-										<th>Gato</th>
-										
-										<th>Bebida</th>
-										<th>Chuches gatos</th>
-										<th>Juguetes gatos</th>
-										<th>Foto mural</th>
-										<th>Precio final</th>
-									</tr>
-									</thead>
-									
-									<tbody th:each="reserva : ${reservas}">
-									
+								<h4>Listado de reservas</h4>
+									<table class="table shadow col-12 text-center">
+										<thead class="marron text-light">
 										<tr>
-											<td th:text="${reserva.nombre}">nombre</td>
-											<td th:text="${reserva.apellidos}">apellidos</td>
-											<td th:text="${reserva.telefono}"></td>
-											<td th:text="${reserva.email}"></td>
-											<td th:text="${reserva.fecha}"></td>
-											<td th:text="${#numbers.formatCurrency(reserva.precio_persona)}"></td>
-											<td th:text="${reserva.tipo_reserva}"></td>
+											<th scope="col">Nombre</th>
+											<th scope="col">Apellidos</th>
+											<th scope="col">Telefono</th>
+											<th scope="col">Email</th>
+											<th scope="col">Fecha reserva</th>
+											<th scope="col">Tipo reserva</th>
+											<th scope="col">Precio persona</th>
+											<th scope="col">Nº personas</th>
+											<th scope="col">Gato</th>
 											
-											<td th:text="${reserva.gato}"></td>
 											
-											<td th:text="${reserva.bebida}"></td>
-											<td th:text="${reserva.comida_gatos}"></td>
-											<td th:text="${reserva.juguetes_gatos}"></td>
-											<td th:text="${reserva.foto_mural}"></td>
-											<td th:text="${#numbers.formatCurrency(reserva.precio_final)}"></td>
-										</tr>	
-									</tbody>
-								</table>
-
+											<th scope="col">Precio final</th>
+										</tr>
+										</thead>
+										
+										<tbody th:each="reserva : ${reservas}">
+										
+											<tr>
+												<td scope="row" th:text="${reserva.nombre}">nombre</td>
+												<td th:text="${reserva.apellidos}">apellidos</td>
+												<td th:text="${reserva.telefono}"></td>
+												<td th:text="${reserva.email}"></td>
+												<td th:text="${reserva.fecha}"></td>
+												<td th:text="${reserva.tipo_reserva}"></td>
+												<td th:text="${#numbers.formatCurrency(reserva.precio_persona)}"></td>
+												<td th:text="${reserva.num_personas}"></td>
+												<td th:text="${reserva.gato.id}"></td>
+												<td th:text="${#numbers.formatCurrency(reserva.precio_final)}"></td>
+											</tr>	
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</article>
 

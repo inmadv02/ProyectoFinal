@@ -29,14 +29,7 @@ public class MainController {
 		return "index";
 	}
 	
-	@GetMapping("/lista/nombreGato/{id}")
-	public String todosLosGato(Model model, 
-			@PathVariable("id") Long id) {
-		
-		model.addAttribute("alumnos", gs.ordenadosPorNombre(id));			
-
-		return "main/lista";
-	}
+	
 	
 
 }

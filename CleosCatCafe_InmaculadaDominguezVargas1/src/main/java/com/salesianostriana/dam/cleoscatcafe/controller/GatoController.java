@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.salesianostriana.dam.cleoscatcafe.modelo.Gato;
+import com.salesianostriana.dam.cleoscatcafe.modelo.Reserva;
 import com.salesianostriana.dam.cleoscatcafe.servicios.GatoServicio;
+import com.salesianostriana.dam.cleoscatcafe.servicios.ReservaServicio;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,7 +34,7 @@ public class GatoController {
 	
 	
 	private final GatoServicio gs;
-
+	private final ReservaServicio rs;
 	
 	@GetMapping("/")
 	public String gatosContienenColor(Model model, 
@@ -40,9 +42,14 @@ public class GatoController {
 		
 		List<Gato> listadoGatos;
 		
-	
-		listadoGatos = gs.contienenColor(consulta.get());
+		if (consulta.isEmpty()) {
+			listadoGatos = gs.findAll();
+		}
+		else {
 			
+			listadoGatos = gs.contienenColor(consulta.get());
+		
+		}
 
 		model.addAttribute("gatos", listadoGatos);					
 
@@ -101,27 +108,30 @@ public class GatoController {
 	}
 	
 	
+
 	@GetMapping("/admin/borrar/{id}")
-	public String borrarProducto(@PathVariable("id") Long id, Model model) {
+	public String borrarGato(@PathVariable("id") Long id, Model model) {
 
 		Gato gato = gs.findById(id);
-
-		//gs.countReservaByAfterDiaDeHoy(id);
 		
-		if (gato != null /*&& !gato.getReservas().isEmpty()*/) {
-			gs.delete(gato);
-			
-		}
+			if (gato != null && gato.getReservas().isEmpty()) {
+				gs.delete(gato);
+			}
+			else {
+				return "redirect:/main/lista";
+			}
+		
 		return "redirect:/main/lista";
+		
+		
 		
 
 	}
 	
 	@GetMapping("/nombreGato/{id}")
-	public String todosLosGatos(Model model, 
-			@PathVariable("id") Long id) {
+	public String todosLosGatos(Model model, @PathVariable("id") Long id) {
 		
-		model.addAttribute("alumnos", gs.ordenadosPorNombre(id));			
+		model.addAttribute("gatos", gs.ordenadosPorNombre(id));			
 
 		return "redirect:/main/lista";
 	}

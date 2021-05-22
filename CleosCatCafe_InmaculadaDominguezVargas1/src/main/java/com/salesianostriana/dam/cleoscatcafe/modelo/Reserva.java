@@ -19,7 +19,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author PC
@@ -48,11 +50,13 @@ public class Reserva {
 	@Enumerated(EnumType.STRING)
 	private Tipo tipo_reserva;
 	
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@ManyToOne
 	private Gato gato;
 	
 	private String metodo_pago;
-	private boolean comida_gatos;
+	private final boolean comida_gatos = true;
 	private boolean juguetes_gatos;
 	private boolean bebida;
 	private boolean foto_mural;
@@ -64,38 +68,45 @@ public class Reserva {
 	private double precio_final;
 	
 	
-	public double configuracionReservas () {
+	public double configuracionReservas (Reserva reserva) {
 		
 		double media = 3.5, hora = 4.5, horaYMedia = 5.5;
 		
-		if(this.tipo_reserva == Tipo.media) {
-			this.tiempo = LocalTime.of(0, 30);
-			this.bebida = false;
-			this.juguetes_gatos = false;
-			this.foto_mural = false;
+		if(reserva.tipo_reserva == Tipo.media) {
+			reserva.setTiempo(LocalTime.of(0, 30));
+			reserva.setBebida(false);
+			reserva.setJuguetes_gatos(false);
 			
-			this.precio_persona = media;
-			this.precio_final = media*this.num_personas;
-			return this.precio_final;
+			reserva.setFoto_mural(false);
+			
+			reserva.setPrecio_persona(media);
+			reserva.setPrecio_final(media*reserva.getNum_personas()); 
+			return reserva.getPrecio_final();
+			
 		}
 		
 		if(this.tipo_reserva == Tipo.hora) {
-			this.tiempo = LocalTime.of(1, 0);
-			this.foto_mural = false;
-			this.precio_persona = hora;
+			reserva.setTiempo(LocalTime.of(1, 00));
+			reserva.setBebida(true);
+			reserva.setJuguetes_gatos(true);
+		
+			reserva.setFoto_mural(false);
 			
-			
-			this.precio_final = hora*this.num_personas;
-			return this.precio_final;
+			reserva.setPrecio_persona(hora);
+			reserva.setPrecio_final(hora*reserva.getNum_personas()); 
+			return reserva.getPrecio_final();
 		}
 		
 		else {
-			this.tiempo = LocalTime.of(1, 30);
-			this.precio_persona = horaYMedia;
+			reserva.setTiempo(LocalTime.of(1, 30));
+			reserva.setBebida(true);
+			reserva.setJuguetes_gatos(true);
 			
+			reserva.setFoto_mural(true);
 			
-			this.precio_final = this.precio_persona*this.num_personas;
-			return this.precio_final;
+			reserva.setPrecio_persona(horaYMedia);
+			reserva.setPrecio_final(horaYMedia*reserva.getNum_personas()); 
+			return reserva.getPrecio_final();
 		}
 	}
 
