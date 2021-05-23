@@ -13,8 +13,10 @@ import com.salesianostriana.dam.cleoscatcafe.repos.GatoRepository;
 import com.salesianostriana.dam.cleoscatcafe.servicios.base.BaseService;
 
 /**
- * @author PC
- *
+ * Clase servicio de Gato que extiende a la interfaz donde tenemos todos los métodos que ponemos en uso en el controller.
+ * @author dominguez.vamar21
+ * @version 1.0
+ * @since 1.0
  */
 
 @Service
@@ -26,16 +28,11 @@ public class GatoServicio extends BaseService <Gato, Long, GatoRepository> {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-
-	public List<Gato> ordenadosPorNombre (Long id){
-		return this.repositorio.findByIdOrderByNombreAsc(id);
-	}
-	
-//	public List<Gato> ordenadosPorEdad (Long id){
-//		return this.repositorio.findByIdOrderByEdad(id);
-//	}
-	
+	/**
+	 * Método que contiene a la consulta que hemos hecho en el GatoRepository
+	 * @param color
+	 * @return lista de gatos que son del mismo color
+	 */
 	public List<Gato> contienenColor (String color){
 		return this.repositorio.findByColorContainsIgnoreCase(color);
 	}

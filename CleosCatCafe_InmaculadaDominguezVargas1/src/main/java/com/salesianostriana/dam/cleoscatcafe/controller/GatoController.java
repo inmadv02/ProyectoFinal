@@ -24,18 +24,30 @@ import com.salesianostriana.dam.cleoscatcafe.servicios.ReservaServicio;
 import lombok.RequiredArgsConstructor;
 
 /**
+ * 
+ * Clase para gestionar los gatos del Cat Café. Aquí podemos añadir nuevos gatos, borrarlos, editarlos, etc.
  * @author dominguez.vamar21
- *
+ * @version 1.0
+ * @since 1.0
  */
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/gato")
 public class GatoController {
 	
-	
+	/**
+	 * Atributos final y anotación @RequiredArgsConstructor para la inyección de datos y las dependencias.
+	 */
 	private final GatoServicio gs;
 	private final ReservaServicio rs;
 	
+	/**
+	 * Método de búsqueda por color 
+	 * 
+	 * @param model
+	 * @param consulta
+	 * @return una lista de gatos cuyo color coincida con el de la consulta en el index
+	 */
 	@GetMapping("/")
 	public String gatosContienenColor(Model model, 
 			@RequestParam("q") Optional<String> consulta) {
@@ -53,16 +65,29 @@ public class GatoController {
 
 		model.addAttribute("gatos", listadoGatos);					
 
-		return "index";
+		return "redirect:/main/lista";
 	}
 	
-	
+
+	/**
+	 * Creamos un gato vacío que posteriormente vamos a rellenar dentro del formulario.
+	 * Establecemos que la fecha de entrada siempre sea la fecha actual.
+	 * @param model
+	 * @return página web del formulario
+	 */
 	@GetMapping("/admin/nuevo-gato")
 	public String nuevoGato(Model model) {
 		model.addAttribute("gato", new Gato());
 		return "admin/form-gato";
 	}
 	
+	/**
+	 * Guardamos el gato que hemos rellenado en el formulario
+	 * 
+	 * @param gato
+	 * @param model
+	 * @return nos devuelve a la principal
+	 */
 	@PostMapping("/admin/nuevo-gato/submit")
 	public String submitNuevoGato(@ModelAttribute("gato") Gato gato, Model model) {
 		
@@ -72,10 +97,16 @@ public class GatoController {
 		return "redirect:/main/lista";
 	}
 	
-	@GetMapping("/gato/{id}") //después lo cambio
+	/**
+	 * Método para ver los detalles de un gato en específico.
+	 * @param id del gato
+	 * @param model
+	 * @return la plantilla con los detalles del gato.
+	 */
+	
+	@GetMapping("/gato/{id}")
 	public String showDetails(@PathVariable("id") Long id, Model model) {
-		
-		//Buscamos el producto por id
+	
 		Gato gato = gs.findById(id);
 		
 		model.addAttribute("gato", gato);
@@ -84,14 +115,14 @@ public class GatoController {
 		
 	}
 	
-	@GetMapping("/lista/{id}")
-	public String mostrarGato(@PathVariable("id") Long id, Model model) {
-		
-		model.addAttribute("gato", gs.findById(id));
-		
-		return "redirect:/main/lista";
-	}
-	
+	/**
+	 * Editamos el gato usando el formulario que hemos usado para agregar.
+	 * Comprobamos si el id del gato es null.
+	 * 
+	 * @param id del gato
+	 * @param model
+	 * @return el formulario con los datos ya cargados, o los redirige a la página principal
+	 */
 	@GetMapping("/admin/editar/{id}")
 	public String editarGato(@PathVariable("id") Long id, Model model) {
 
@@ -107,7 +138,14 @@ public class GatoController {
 		}
 	}
 	
-	
+	/**
+	 * Borramos un gato usando su id. Comprobamos antes que este no sea nulo y que 
+	 * el gato en cuestión no tenga reservas asociadas.
+	 * 
+	 * @param id
+	 * @param model
+	 * @return nos redirige a la página principal
+	 */
 
 	@GetMapping("/admin/borrar/{id}")
 	public String borrarGato(@PathVariable("id") Long id, Model model) {
@@ -121,20 +159,11 @@ public class GatoController {
 				return "redirect:/main/lista";
 			}
 		
-		return "redirect:/main/lista";
-		
-		
-		
+		return "redirect:/main/lista";	
 
 	}
 	
-	@GetMapping("/nombreGato/{id}")
-	public String todosLosGatos(Model model, @PathVariable("id") Long id) {
-		
-		model.addAttribute("gatos", gs.ordenadosPorNombre(id));			
 
-		return "redirect:/main/lista";
-	}
 	
 	
 }

@@ -10,12 +10,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 /**
- * @author PC
- *
+ * @author dominguez.vamar21
+ * @version 1.0
+ * @see 1.0
  */
 @Service
 public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> implements IBaseService<T, ID>{
 	
+	/**
+	 * Atributo que extiende al repositorio JpaRepository y mediante el cua
+	 * se produce la inyección de dependencias con la anotacion @Autowired
+	 */
 	@Autowired
 	protected R repositorio;
 	
@@ -25,9 +30,9 @@ public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> impleme
 	}
 	
 	/**
-	 * Almacenamos una nueva entidad a través del repositorio
+	 * Guardamos una nueva entidad.
 	 * @param t
-	 * @return 
+	 * @return
 	 */
 	@Override
 	public T save(T t) {
@@ -35,7 +40,7 @@ public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> impleme
 	}
 	
 	/**
-	 * Localizamos una entidad en base a su Id
+	 * Encontramos a través del id su entidad correspondiente
 	 * 
 	 * @param id
 	 * @return
@@ -44,9 +49,9 @@ public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> impleme
 	public T findById(ID id) {
 		return repositorio.findById(id).orElse(null);
 	}
-	
+
 	/**
-	 * Obtenemos todas las entidades de un tipo de entidad
+	 * Encontramos todas las entidades de un tipo de entidad
 	 * @return
 	 */
 	@Override
@@ -55,7 +60,7 @@ public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> impleme
 	}
 	
 	/**
-	 * Editamos una instancia de una entidad (si no tiene Id, la insertamos).
+	 * Editamos una instancia de una entidad.
 	 * @param t
 	 * @return
 	 */
@@ -74,7 +79,7 @@ public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> impleme
 	}
 	
 	/**
-	 * Eliminamos una instancia en base a su ID
+	 * Eliminamos una instancia a través de su ID
 	 * @param id
 	 */
 	@Override

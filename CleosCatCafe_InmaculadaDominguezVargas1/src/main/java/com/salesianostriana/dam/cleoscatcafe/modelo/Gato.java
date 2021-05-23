@@ -20,8 +20,11 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * @author PC
- *
+ * Clase modelo Gato. Recoge los atributos de los gatos del Cat Café.
+ * 
+ * @author dominguez.vamar21
+ * @version 1.0
+ * @since 1.0
  */
 
 @Data
@@ -30,6 +33,9 @@ import lombok.ToString;
 @Entity
 public class Gato {
 	
+	/**
+	 * Indicamos la clave primaria de la clase con la anotación Id
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
@@ -42,38 +48,14 @@ public class Gato {
 	private LocalDate fecha_entrada;
 	private String informacion;
 	
+	/** 
+	 * Establecemos la relación de las tablas con la anotación @OneToMany y el atributo con una lista de reservas, 
+	 * ya que un gato puede tener muchas reservas y una reserva solo un gato.
+	 */
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@OneToMany(mappedBy="gato")
 	private List<Reserva> reservas = new ArrayList<>();
 
-	public Gato(long id, String nombre, String sexo, int edad, String color, LocalDate fecha_entrada,
-			String informacion) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.sexo = sexo;
-		this.edad = edad;
-		this.color = color;
-		this.fecha_entrada = fecha_entrada;
-		this.informacion = informacion;
-	}
-
-	public Gato(long id, String foto, String nombre, String sexo, int edad, String color, LocalDate fecha_entrada,
-			String informacion) {
-		super();
-		this.id = id;
-		this.foto = foto;
-		this.nombre = nombre;
-		this.sexo = sexo;
-		this.edad = edad;
-		this.color = color;
-		this.fecha_entrada = fecha_entrada;
-		this.informacion = informacion;
-	}
 	
-	
-	
-	
-
 }

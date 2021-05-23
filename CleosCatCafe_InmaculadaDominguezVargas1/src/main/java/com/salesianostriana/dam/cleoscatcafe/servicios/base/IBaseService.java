@@ -2,17 +2,26 @@ package com.salesianostriana.dam.cleoscatcafe.servicios.base;
 
 import java.util.List;
 
+/**
+ * Interfaz donde están los métodos principales del proyecto (editar, borrar, guardar, etc.)
+ * 
+ * @author dominguez.vamar21
+ * @version 1.0
+ * @param <T>
+ * @param <ID>
+ */
+
 public interface IBaseService<T, ID> {
 
 	/**
-	 * Almacenamos una nueva entidad a través del repositorio
+	 * Guardamos una nueva entidad.
 	 * @param t
 	 * @return 
 	 */
 	T save(T t);
 
 	/**
-	 * Localizamos una entidad en base a su Id
+	 * Encontramos a través del id su entidad correspondiente
 	 * 
 	 * @param id
 	 * @return
@@ -20,13 +29,13 @@ public interface IBaseService<T, ID> {
 	T findById(ID id);
 
 	/**
-	 * Obtenemos todas las entidades de un tipo de entidad
+	 * Encontramos todas las entidades de un tipo de entidad
 	 * @return
 	 */
 	List<T> findAll();
 
 	/**
-	 * Editamos una instancia de una entidad (si no tiene Id, la insertamos).
+	 * Editamos una instancia de una entidad.
 	 * @param t
 	 * @return
 	 */
@@ -39,7 +48,7 @@ public interface IBaseService<T, ID> {
 	void delete(T t);
 
 	/**
-	 * Eliminamos una instancia en base a su ID
+	 * Eliminamos una instancia a través de su ID
 	 * @param id
 	 */
 	void deleteById(ID id);

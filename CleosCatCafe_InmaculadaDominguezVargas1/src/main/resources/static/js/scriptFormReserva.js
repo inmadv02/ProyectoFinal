@@ -18,7 +18,7 @@
     let email = form.elements.email.value;
     let telefono = form.elements.telefono.value;
     let gato = form.elements.gato.value;
-  	let fecha = form.elements.date.value;
+  	let fecha = form.elements.fecha.value;
   	let tipo = form.elements.tipo.value;
   	let personas = form.elements.personas.value;
   	let pago = form.elements.pago.value;
