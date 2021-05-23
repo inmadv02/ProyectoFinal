@@ -19,10 +19,10 @@
     let telefono = form.elements.telefono.value;
     let gato = form.elements.gato.value;
   	let fecha = form.elements.fecha.value;
-  	let tipo = form.elements.tipo.value;
+
   	let personas = form.elements.personas.value;
-  	let pago = form.elements.pago.value;
-  	let hoy = moment();
+	let hoy = moment();
+  
 
         if(nombre === ""){
      
@@ -56,23 +56,16 @@
         }
         
         if(fecha.isBefore(hoy)){
-        	alert("Escoge una fecha que sea posterior al día de hoy.");
+        
+        	 alert("Indique una fecha posterior al día de hoy, por favor");
         }
         
-        if(tipo === ""){
-      
-            alert("Indique el tipo de reserva, por favor");
-        }
         
         if(personas === ""){
       
             alert("Indique el número de personas que vendrán, por favor");
         }
         
-        if(pago === ""){
-      
-            alert("Indique su método de pago, por favor");
-        }
-
+       
     }
  

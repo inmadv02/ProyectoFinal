@@ -27,7 +27,7 @@ public interface GatoRepository extends JpaRepository <Gato, Long>{
 	 * @param color
 	 * @return lista de gatos.
 	 */
-	List <Gato> findByColorContainsIgnoreCase (String color);
+	List <Gato> findByColorContainsIgnoreCase(String color);
 	
 	
 

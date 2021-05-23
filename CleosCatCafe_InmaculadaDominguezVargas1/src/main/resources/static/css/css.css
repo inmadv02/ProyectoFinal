@@ -38,6 +38,12 @@
 			background-repeat: no-repeat;
 			height: 400px;
 		}
+
+		@media screen and (max-width:321px){
+			.caja {
+				margin-bottom: 100px;
+			}
+		}
 		
 		.bienvenida p:first-child {
 			font-size: 12pt;
@@ -63,24 +69,22 @@
 		}
 		
 		#inputName4, #inputLastName4, #inputEmail4, #inputTlf4, #inputDate,
-			#numero, #caducidad {
+			#numero, #caducidad, #gato, #personas {
 			width: 80%;
 		}
+		
 		
 		select #inputTipo {
 			width: 100%;
 		}
 		
-		#buscar {
-			width: 90%;
-			height: 30px;
-		}
 		
-		#Gato, #Reservar {
+		
+		#Gato, #Reserva {
 			display: none;
 		}
 		
-		#Gato:target, #Reservar:target {
+		#Gato:target, #Reserva:target {
 			display: inherit;
 		}
 		
@@ -106,6 +110,12 @@
 		.fotos p {
 			font-size: 15pt;
 			font-family: 'Montserrat', sans-serif;
+		}
+
+		#cajainfo {
+			background-image: url('/img/fondopaw.png');
+			background-size: cover;
+			background-repeat: no-repeat;
 		}
 		
 		@media screen and (min-width: 1200px) {

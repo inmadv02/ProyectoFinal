@@ -39,23 +39,26 @@ public class ReservaController {
 	private final GatoServicio gs;
 	private final ReservaServicio rs;
 	
+	/**
+	 * Método de búsqueda por apellido 
+	 * 
+	 * @param model
+	 * @param consulta
+	 * @return una lista de reservas cuyo apellido coincida con el de la consulta en el index
+	 */
 	@GetMapping("/")
 	public String gatosContienenColor(Model model, 
 			@RequestParam("q") Optional<String> consulta) {
 		
-		List<Reserva> listadoReservas;
+		List <Reserva> listadoReservas;
 		
-		if (consulta.isEmpty()) {
-			listadoReservas = rs.findAll();
-		}
-		else {
 			
-			listadoReservas = rs.contienenApellidos(consulta.get());
-		}
+		listadoReservas = rs.contienenApellidos(consulta.get());
+		
 
 		model.addAttribute("reservas", listadoReservas);					
 
-		return "redirect:/main/lista";
+		return "index";
 	}
 	
 	

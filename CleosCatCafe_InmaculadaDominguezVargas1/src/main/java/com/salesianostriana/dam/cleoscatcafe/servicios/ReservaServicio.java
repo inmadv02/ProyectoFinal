@@ -27,10 +27,11 @@ public class ReservaServicio extends BaseService <Reserva, Long, ReservaReposito
 	}
 	
 	public List <Reserva> contienenApellidos (String apellidos){
-		return this.repositorio.findByApellidosContainsIgnoreCase(apellidos);
+		return repositorio.findByApellidosContainsIgnoreCaseOrderByApellidosDesc(apellidos);
 	}
 	
 	
+
 
 }
 

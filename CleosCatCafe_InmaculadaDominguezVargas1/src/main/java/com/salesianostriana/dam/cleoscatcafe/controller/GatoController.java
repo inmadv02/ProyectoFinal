@@ -54,18 +54,13 @@ public class GatoController {
 		
 		List<Gato> listadoGatos;
 		
-		if (consulta.isEmpty()) {
-			listadoGatos = gs.findAll();
-		}
-		else {
+	
+		listadoGatos = gs.contienenColor(consulta.get());
 			
-			listadoGatos = gs.contienenColor(consulta.get());
-		
-		}
 
 		model.addAttribute("gatos", listadoGatos);					
 
-		return "redirect:/main/lista";
+		return "main/lista";
 	}
 	
 

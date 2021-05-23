@@ -107,6 +107,10 @@ public class Reserva {
 	 * aquí, pero como no tengo "Carrito" como en una página de compras, no
 	 * me ha quedado otra.
 	 * 
+	 * También sé que no es necesario settear como true los valores boolean, 
+	 * ya que son true si no le decimos lo contrario; pero si no lo hago en la
+	 * base de datos salen como false siempre.
+	 * 
 	 * @param reserva
 	 * @return el precio final de la reserva.
 	 */
@@ -129,6 +133,8 @@ public class Reserva {
 		if(this.tipo_reserva == Tipo.hora) {
 			reserva.setTiempo(LocalTime.of(1, 00));
 			reserva.setFoto_mural(false);
+			reserva.setJuguetes_gatos(true);
+			reserva.setBebida(true);
 			
 			reserva.setPrecio_persona(hora);
 			reserva.setPrecio_final(hora*reserva.getNum_personas()); 
@@ -137,7 +143,10 @@ public class Reserva {
 		
 		else {
 			reserva.setTiempo(LocalTime.of(1, 30));
-	
+			reserva.setFoto_mural(true);
+			reserva.setJuguetes_gatos(true);
+			reserva.setBebida(true);
+			
 			reserva.setPrecio_persona(horaYMedia);
 			reserva.setPrecio_final(horaYMedia*reserva.getNum_personas()); 
 			return reserva.getPrecio_final();

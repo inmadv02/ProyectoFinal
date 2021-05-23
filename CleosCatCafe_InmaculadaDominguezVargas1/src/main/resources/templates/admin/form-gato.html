@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-		  <title>Cleo's Cat Café - Inicio</title>
+		  <title>Formulario Gato</title>
 		
         <!--Plantilla Bootstrap-->
         <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
@@ -44,10 +44,10 @@
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#Gato">Nuestros gatos</a>
+                        <a class="nav-link" th:href="@{/main/lista/#Gato}">Nuestros gatos</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#Reservar">Reservar</a>
+                        <a class="nav-link" t:href="@{/main/lista/#Reserva}">Reservar</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Sobre nosotros</a>
@@ -92,12 +92,12 @@
                                   <div class="form-group col-10 col-xl-6">
                                       <label for="nombre">Nombre</label>
                                       <input type="text" class="form-control" id="nombre" name="nombre" 
-                                          placeholder="Coco" th:field="*{nombre}">
+                                          placeholder="Coco" pattern="[A-Za-z]+" th:field="*{nombre}">
                                       
                                   </div>
                                   <div class="form-group col-10 col-xl-6">
                                       <label for="sexo" class="col-12">Sexo</label>
-                                      <select th:field="*{sexo}" name="sexo">
+                                      <select class="form-select" th:field="*{sexo}" name="sexo">
                                         <option th:value="'Macho'" th:text="Macho"></option>
                                         <option th:value="'Hembra'" th:text="Hembra"></option>
                                     </select>
@@ -120,7 +120,7 @@
                             </div>
                             <div class="col-xl-6 col-12 mt-3">
                                 <label for="observaciones">Información sobre el gato</label>
-                                <textarea name="observaciones" id="observaciones" cols="60" rows="5" class="col-12" th:field="*{informacion}"></textarea>
+                                <textarea name="observaciones" id="observaciones" cols="60" rows="5" pattern="[A-Za-z]+" class="col-12" th:field="*{informacion}"></textarea>
                                 
                             </div>
                             <button type="submit" id="btn-submit" class="btn btn-primary col-xl-2 col-4 m-3">Agregar</button>
